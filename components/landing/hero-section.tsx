@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { ArrowRight, Play, Shield, Zap, Globe } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import { HeroDashboard } from "./hero-dashboard"
@@ -64,19 +65,19 @@ export function HeroSection() {
               <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">{t("hero.channelLabel")}</span>
               <div className="flex items-center gap-2 flex-wrap">
                 <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/[0.06] border border-white/10">
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded bg-white" />
+                  <Image src="/images/channels/alipay.png" alt="Alipay" width={14} height={14} className="rounded-sm sm:w-4 sm:h-4" />
                   <span className="text-[10px] sm:text-xs font-medium text-white">{t("hero.alipay")}</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/[0.06] border border-white/10">
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded bg-white/80" />
+                  <Image src="/images/channels/wechat-pay.png" alt="WeChat Pay" width={14} height={14} className="rounded-sm sm:w-4 sm:h-4" />
                   <span className="text-[10px] sm:text-xs font-medium text-white/80">{t("hero.wechatPay")}</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/[0.06] border border-white/10">
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded bg-white/60" />
+                  <Image src="/images/channels/promptpay.png" alt="PromptPay" width={14} height={14} className="rounded-sm sm:w-4 sm:h-4" />
                   <span className="text-[10px] sm:text-xs font-medium text-white/60">PromptPay</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/[0.06] border border-white/10">
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded bg-white/40" />
+                  <Image src="/images/channels/qris.png" alt="QRIS" width={14} height={14} className="rounded-sm sm:w-4 sm:h-4" />
                   <span className="text-[10px] sm:text-xs font-medium text-white/40">QRIS</span>
                 </div>
                 <span className="text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">{t("hero.moreChannels")}</span>

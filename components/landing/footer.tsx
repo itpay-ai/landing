@@ -22,7 +22,7 @@ export function Footer() {
           <div className="col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/logo-transparent.png"
+                src="/logo-white-bg.png"
                 alt="itpay.ai"
                 width={32}
                 height={32}

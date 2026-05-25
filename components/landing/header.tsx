@@ -36,11 +36,11 @@ export function Header() {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Image
-            src="/logo-transparent.png"
+            src="/logo-white-bg.png"
             alt="itpay.ai"
             width={28}
             height={28}
-            className="rounded-lg sm:w-8 sm:h-8"
+            className="sm:w-8 sm:h-8"
           />
           <span className="text-base sm:text-lg font-bold">itpay<span className="text-gradient">.ai</span></span>
         </div>

@@ -2,21 +2,22 @@
 
 import { motion } from "framer-motion"
 import { CheckCircle, Clock, ArrowRight, Globe } from "lucide-react"
+import Image from "next/image"
 import { useI18n } from "@/lib/i18n"
 
 const channelKeys = [
-  { nameKey: "paymentRails.channelAlipay", countryKey: "paymentRails.channelAlipayCountry", flag: "🇨🇳", status: "live", descKey: "paymentRails.channelAlipayDesc" },
-  { nameKey: "paymentRails.channelWechat", countryKey: "paymentRails.channelWechatCountry", flag: "🇨🇳", status: "live", descKey: "paymentRails.channelWechatDesc" },
-  { nameKey: "paymentRails.channelAlipayHK", countryKey: "paymentRails.channelAlipayHKCountry", flag: "🇭🇰", status: "live", descKey: "paymentRails.channelAlipayHKDesc" },
-  { nameKey: "paymentRails.channelWechatHK", countryKey: "paymentRails.channelWechatHKCountry", flag: "🇭🇰", status: "live", descKey: "paymentRails.channelWechatHKDesc" },
-  { nameKey: "paymentRails.channelFPS", countryKey: "paymentRails.channelFPSCountry", flag: "🇭🇰", status: "live", descKey: "paymentRails.channelFPSDesc" },
-  { nameKey: "paymentRails.channelPromptPay", countryKey: "paymentRails.channelPromptPayCountry", flag: "🇹🇭", status: "live", descKey: "paymentRails.channelPromptPayDesc" },
-  { nameKey: "paymentRails.channelPayNow", countryKey: "paymentRails.channelPayNowCountry", flag: "🇸🇬", status: "live", descKey: "paymentRails.channelPayNowDesc" },
-  { nameKey: "paymentRails.channelDuitNow", countryKey: "paymentRails.channelDuitNowCountry", flag: "🇲🇾", status: "coming", descKey: "paymentRails.channelDuitNowDesc" },
-  { nameKey: "paymentRails.channelQRIS", countryKey: "paymentRails.channelQRISCountry", flag: "🇮🇩", status: "coming", descKey: "paymentRails.channelQRISDesc" },
-  { nameKey: "paymentRails.channelVietQR", countryKey: "paymentRails.channelVietQRCountry", flag: "🇻🇳", status: "coming", descKey: "paymentRails.channelVietQRDesc" },
-  { nameKey: "paymentRails.channelGCash", countryKey: "paymentRails.channelGCashCountry", flag: "🇵🇭", status: "coming", descKey: "paymentRails.channelGCashDesc" },
-  { nameKey: "paymentRails.channelUSDC", countryKey: "paymentRails.channelUSDCCountry", flag: "🌐", status: "coming", descKey: "paymentRails.channelUSDCDesc" },
+  { nameKey: "paymentRails.channelAlipay", countryKey: "paymentRails.channelAlipayCountry", logo: "/images/channels/alipay.png", status: "live", descKey: "paymentRails.channelAlipayDesc" },
+  { nameKey: "paymentRails.channelWechat", countryKey: "paymentRails.channelWechatCountry", logo: "/images/channels/wechat-pay.png", status: "live", descKey: "paymentRails.channelWechatDesc" },
+  { nameKey: "paymentRails.channelAlipayHK", countryKey: "paymentRails.channelAlipayHKCountry", logo: "/images/channels/alipay-hk.png", status: "live", descKey: "paymentRails.channelAlipayHKDesc" },
+  { nameKey: "paymentRails.channelWechatHK", countryKey: "paymentRails.channelWechatHKCountry", logo: "/images/channels/wechat-hk.png", status: "live", descKey: "paymentRails.channelWechatHKDesc" },
+  { nameKey: "paymentRails.channelFPS", countryKey: "paymentRails.channelFPSCountry", logo: "/images/channels/fps.png", status: "live", descKey: "paymentRails.channelFPSDesc" },
+  { nameKey: "paymentRails.channelPromptPay", countryKey: "paymentRails.channelPromptPayCountry", logo: "/images/channels/promptpay.png", status: "live", descKey: "paymentRails.channelPromptPayDesc" },
+  { nameKey: "paymentRails.channelPayNow", countryKey: "paymentRails.channelPayNowCountry", logo: "/images/channels/paynow.png", status: "live", descKey: "paymentRails.channelPayNowDesc" },
+  { nameKey: "paymentRails.channelDuitNow", countryKey: "paymentRails.channelDuitNowCountry", logo: "/images/channels/duitnow.png", status: "coming", descKey: "paymentRails.channelDuitNowDesc" },
+  { nameKey: "paymentRails.channelQRIS", countryKey: "paymentRails.channelQRISCountry", logo: "/images/channels/qris.png", status: "coming", descKey: "paymentRails.channelQRISDesc" },
+  { nameKey: "paymentRails.channelVietQR", countryKey: "paymentRails.channelVietQRCountry", logo: "/images/channels/vietqr.png", status: "coming", descKey: "paymentRails.channelVietQRDesc" },
+  { nameKey: "paymentRails.channelGCash", countryKey: "paymentRails.channelGCashCountry", logo: "/images/channels/gcash.png", status: "coming", descKey: "paymentRails.channelGCashDesc" },
+  { nameKey: "paymentRails.channelUSDC", countryKey: "paymentRails.channelUSDCCountry", logo: "/images/channels/usdc.png", status: "coming", descKey: "paymentRails.channelUSDCDesc" },
 ]
 
 export function PaymentRailsSection() {
@@ -56,8 +57,14 @@ export function PaymentRailsSection() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="glass rounded-xl p-4 hover:border-white/20 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-lg">{channel.flag}</span>
+              <div className="flex items-center justify-between mb-3">
+                <Image
+                  src={channel.logo}
+                  alt={t(channel.nameKey)}
+                  width={32}
+                  height={32}
+                  className="rounded-md"
+                />
                 {channel.status === "live" ? (
                   <span className="flex items-center gap-1 text-[10px] font-semibold text-white/80">
                     <CheckCircle className="w-3 h-3" />
@@ -94,6 +101,13 @@ export function PaymentRailsSection() {
             <ArrowRight className="w-5 h-5 text-muted-foreground rotate-90 md:rotate-0" />
             
             <div className="flex flex-col items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-white/10 to-white/5 border border-white/20 glow-blue">
+              <Image
+                src="/images/channels/itpay-logo.png"
+                alt="itpay"
+                width={24}
+                height={24}
+                className="rounded-md"
+              />
               <span className="text-sm font-bold text-gradient">{t("paymentRails.flowAipay")}</span>
               <span className="text-[10px] text-muted-foreground">{t("paymentRails.flowRouting")}</span>
             </div>
@@ -101,9 +115,9 @@ export function PaymentRailsSection() {
             <ArrowRight className="w-5 h-5 text-muted-foreground rotate-90 md:rotate-0" />
             
             <div className="flex items-center gap-2 flex-wrap justify-center">
-              {[t("paymentRails.flowChannels"), "WeChat", "PromptPay", "QRIS", "USDC"].map((ch) => (
-                <div key={ch} className="px-3 py-2 rounded-lg bg-secondary text-xs font-medium">
-                  {ch}
+              {["alipay.png", "wechat-pay.png", "promptpay.png", "qris.png", "usdc.png"].map((logo) => (
+                <div key={logo} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-secondary text-xs font-medium">
+                  <Image src={`/images/channels/${logo}`} alt="" width={16} height={16} className="rounded-sm" />
                 </div>
               ))}
             </div>
