@@ -10,38 +10,38 @@ export function ConversationalCommerceSection() {
   const messages = [
     {
       role: "user" as const,
-      avatar: <User className="w-4 h-4 text-muted-foreground" />,
+      avatar: <User className="w-4 h-4 text-[#60a5fa]" />,
       content: t("conversational.msgUser"),
       sublabel: null,
-      color: null,
+      color: "bg-[#1e3a5f]/60 border-[#60a5fa]/40",
     },
     {
       role: "bot" as const,
       avatar: <Bot className="w-4 h-4 text-white" />,
       content: t("conversational.msgBotPrice"),
       sublabel: null,
-      color: "border-white/20",
-    },
-    {
-      role: "bot" as const,
-      avatar: <QrCode className="w-4 h-4 text-white/70" />,
-      content: t("conversational.msgBotQR"),
-      sublabel: t("conversational.msgBotQRSub"),
-      color: "border-white/20",
-    },
-    {
-      role: "bot" as const,
-      avatar: <CheckCircle className="w-4 h-4 text-white" />,
-      content: t("conversational.msgBotSuccess"),
-      sublabel: t("conversational.msgBotSuccessSub"),
       color: "border-white/20 bg-white/[0.03]",
     },
     {
       role: "bot" as const,
-      avatar: <Unlock className="w-4 h-4 text-white/80" />,
+      avatar: <QrCode className="w-4 h-4 text-[#a78bfa]" />,
+      content: t("conversational.msgBotQR"),
+      sublabel: t("conversational.msgBotQRSub"),
+      color: "border-[#8b5cf6]/30 bg-[#8b5cf6]/10",
+    },
+    {
+      role: "bot" as const,
+      avatar: <CheckCircle className="w-4 h-4 text-[#4ade80]" />,
+      content: t("conversational.msgBotSuccess"),
+      sublabel: t("conversational.msgBotSuccessSub"),
+      color: "border-[#22c55e]/30 bg-[#22c55e]/10",
+    },
+    {
+      role: "bot" as const,
+      avatar: <Unlock className="w-4 h-4 text-[#fbbf24]" />,
       content: t("conversational.msgBotUnlock"),
       sublabel: null,
-      color: "border-white/20",
+      color: "border-[#f59e0b]/30 bg-[#f59e0b]/10",
     },
   ]
 

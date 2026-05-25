@@ -66,12 +66,12 @@ export function PaymentRailsSection() {
                   className="rounded-md"
                 />
                 {channel.status === "live" ? (
-                  <span className="flex items-center gap-1 text-[10px] font-semibold text-white/80">
+                  <span className="flex items-center gap-1 text-[10px] font-semibold text-[#4ade80] bg-[#22c55e]/10 px-2 py-0.5 rounded-full">
                     <CheckCircle className="w-3 h-3" />
                     {t("paymentRails.statusLive")}
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                  <span className="flex items-center gap-1 text-[10px] text-[#fbbf24] bg-[#fbbf24]/10 px-2 py-0.5 rounded-full">
                     <Clock className="w-3 h-3" />
                     {t("paymentRails.statusComing")}
                   </span>

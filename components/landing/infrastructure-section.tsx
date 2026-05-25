@@ -4,6 +4,15 @@ import { motion } from "framer-motion"
 import { MessageSquare, QrCode, CreditCard, Wallet, BarChart3, Zap } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
+const iconGlows: Record<string, { glow: string }> = {
+  MessageSquare: { glow: "rgba(59,130,246,0.35)" },
+  QrCode: { glow: "rgba(168,85,247,0.35)" },
+  CreditCard: { glow: "rgba(20,184,166,0.35)" },
+  Wallet: { glow: "rgba(245,158,11,0.35)" },
+  BarChart3: { glow: "rgba(34,197,94,0.35)" },
+  Zap: { glow: "rgba(34,211,238,0.35)" },
+}
+
 const featureKeys = [
   { icon: MessageSquare, titleKey: "infrastructure.featureNaturalPayment", descKey: "infrastructure.featureNaturalPaymentDesc" },
   { icon: QrCode, titleKey: "infrastructure.featureMultiQR", descKey: "infrastructure.featureMultiQRDesc" },
@@ -51,9 +60,9 @@ export function InfrastructureSection() {
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-white/[0.06]"
-                style={{ boxShadow: "0 0 20px rgba(255,255,255,0.08)" }}
+                style={{ boxShadow: `0 0 20px ${iconGlows[feature.icon.name]?.glow || "rgba(255,255,255,0.08)"}` }}
               >
-                <feature.icon className="w-6 h-6 text-white" />
+                <feature.icon className="w-6 h-6 text-white/90" />
               </div>
               <h3 className="text-lg font-semibold mb-2">{t(feature.titleKey)}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{t(feature.descKey)}</p>

@@ -4,6 +4,24 @@ import { motion } from "framer-motion"
 import { Eye, Languages, ArrowLeftRight, FileText } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
+/** Renders translated example text with optional colored keyword highlighting */
+function HighlightedExample({ text }: { text: string }) {
+  const parts = text.split(/(→|฿\d[\d,.]*|\$\d[\d,.]*|\b(?:THB|SGD|IDR|USD)\b|✅|[🇹🇭🇸🇬🇺🇸🇮🇩])/g)
+  return (
+    <pre className="whitespace-pre-wrap text-muted-foreground break-words">
+      {parts.map((part, i) => {
+        if (part === "→") return <span key={i} className="text-[#22d3ee]">→</span>
+        if (/^฿/.test(part)) return <span key={i} className="text-[#4ade80]">{part}</span>
+        if (/^\$/.test(part)) return <span key={i} className="text-[#4ade80]">{part}</span>
+        if (/^(THB|SGD|IDR|USD)$/.test(part)) return <span key={i} className="text-[#fbbf24]">{part}</span>
+        if (part === "✅") return <span key={i} className="text-[#4ade80]">✅</span>
+        if (/^[🇹🇭🇸🇬🇺🇸🇮🇩]$/.test(part)) return <span key={i} className="text-[#60a5fa]">{part}</span>
+        return part
+      })}
+    </pre>
+  )
+}
+
 export function AINativeSection() {
   const { t } = useI18n()
 
@@ -82,7 +100,7 @@ export function AINativeSection() {
                   <div className="w-2 h-2 rounded-full bg-white/60" />
                   <span className="text-muted-foreground">{t("aiNative.exampleLabel")}</span>
                 </div>
-                <pre className="whitespace-pre-wrap text-muted-foreground break-words">{t(item.exampleKey)}</pre>
+                <HighlightedExample text={t(item.exampleKey)} />
               </div>
             </motion.div>
           ))}

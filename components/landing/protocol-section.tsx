@@ -86,11 +86,11 @@ export function ProtocolSection() {
           </div>
           <div className="p-4 text-sm font-mono leading-relaxed overflow-x-auto">
             <code>
-              <span className="text-white">HTTP/1.1 402</span> <span className="text-white/70">Payment Required</span><br />
-              <span className="text-white/80">X-Payment-Intent:</span> <span className="text-foreground">pi_01HXYZ...</span><br />
-              <span className="text-white/80">X-Payment-Channel:</span> <span className="text-foreground">promptpay</span><br />
-              <span className="text-white/80">X-Payment-Amount:</span> <span className="text-foreground">THB 500</span><br />
-              <span className="text-white/80">X-Payment-QR:</span> <span className="text-white/60">https://api.itpay.ai/qr/pi_01HXYZ.png</span>
+              <span className="text-white">HTTP/1.1 402</span> <span className="text-[#f97316]">Payment Required</span><br />
+              <span className="text-[#22d3ee]">X-Payment-Intent:</span> <span className="text-foreground">pi_01HXYZ...</span><br />
+              <span className="text-[#22d3ee]">X-Payment-Channel:</span> <span className="text-foreground">promptpay</span><br />
+              <span className="text-[#22d3ee]">X-Payment-Amount:</span> <span className="text-foreground">THB 500</span><br />
+              <span className="text-[#22d3ee]">X-Payment-QR:</span> <span className="text-[#22d3ee]/80">https://api.itpay.ai/qr/pi_01HXYZ.png</span>
             </code>
           </div>
         </motion.div>
