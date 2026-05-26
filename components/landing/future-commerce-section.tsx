@@ -75,7 +75,7 @@ export function FutureCommerceSection() {
             </div>
             <ArrowLeftRight className="w-5 h-5 text-muted-foreground" />
             <div className="px-6 py-3 rounded-xl bg-gradient-to-r from-white/10 to-white/5 border border-white/20 glow-blue text-sm font-bold text-gradient">
-              AIPay
+              ItPay
             </div>
             <ArrowLeftRight className="w-5 h-5 text-muted-foreground" />
             <div className="px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-sm font-medium">

@@ -8,7 +8,7 @@ export function FourPartySection() {
   const { t } = useI18n()
 
   const comparisonItems = t("fourParty.comparisonItems") as unknown as string[]
-  const aipayComparisonItems = t("fourParty.aipayComparisonItems") as unknown as string[]
+  const itpayComparisonItems = t("fourParty.itpayComparisonItems") as unknown as string[]
 
   return (
     <section className="relative py-24 lg:py-32">
@@ -77,14 +77,14 @@ export function FourPartySection() {
                 </div>
               </div>
               
-              {/* AIPay */}
+              {/* ItPay */}
               <div className="flex flex-col items-center gap-3 p-6 rounded-xl bg-gradient-to-br from-white/[0.06] to-white/[0.03] border border-white/15">
                 <div className="w-12 h-12 rounded-full bg-white/[0.1] flex items-center justify-center">
                   <span className="text-xl">⚡</span>
                 </div>
                 <div className="text-center">
-                  <div className="font-semibold">{t("fourParty.aipayLabel")}</div>
-                  <div className="text-xs text-white font-semibold">{t("fourParty.aipayDesc")}</div>
+                  <div className="font-semibold">{t("fourParty.itpayLabel")}</div>
+                  <div className="text-xs text-white font-semibold">{t("fourParty.itpayDesc")}</div>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ export function FourPartySection() {
               <ArrowRight className="w-3 h-3 flex-shrink-0" />
               <span>{t("fourParty.flowReceive")}</span>
               <span className="mx-1 sm:mx-2">|</span>
-              <span className="text-white">{t("fourParty.flowAipay")}</span>
+              <span className="text-white">{t("fourParty.flowItpay")}</span>
             </div>
           </div>
         </motion.div>
@@ -119,9 +119,9 @@ export function FourPartySection() {
             </ul>
           </div>
           <div className="glass rounded-xl p-6 border-white/10">
-            <h3 className="font-semibold mb-4 text-gradient">{t("fourParty.aipayComparisonTitle")}</h3>
+            <h3 className="font-semibold mb-4 text-gradient">{t("fourParty.itpayComparisonTitle")}</h3>
             <ul className="space-y-2 text-sm">
-              {aipayComparisonItems.map((item, i) => (
+              {itpayComparisonItems.map((item, i) => (
                 <li key={i} className="text-white">✓ {item}</li>
               ))}
             </ul>

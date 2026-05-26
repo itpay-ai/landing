@@ -69,14 +69,14 @@ export function WalletCreditsSection() {
               </div>
               <div className="p-3 sm:p-4 text-sm font-mono leading-relaxed overflow-x-auto">
                 <code>
-                  <span className="text-white/70">const</span> <span className="text-foreground">wallet</span> = <span className="text-white/70">await</span> <span className="text-white">itpay.wallets</span>.<span className="text-white">create</span>({'{'})<br />
-                  &nbsp;&nbsp;agentId: <span className="text-white/50">{`'agent_abc123'`}</span>,<br />
-                  &nbsp;&nbsp;currency: <span className="text-white/50">{`'USDC'`}</span>,<br />
+                  <span className="text-purple-400">const</span> <span className="text-white">wallet</span> = <span className="text-purple-400">await</span> <span className="text-cyan-400">itpay.wallets</span>.<span className="text-cyan-400">create</span>({'{'})<br />
+                  &nbsp;&nbsp;agentId: <span className="text-emerald-400/80">{`'agent_abc123'`}</span>,<br />
+                  &nbsp;&nbsp;currency: <span className="text-emerald-400/80">{`'USDC'`}</span>,<br />
                   {'}'})<br />
                   <br />
-                  <span className="text-white/70">await</span> <span className="text-white">itpay.cumulative</span>.<span className="text-white">record</span>({'{'})<br />
-                  &nbsp;&nbsp;usage: {'{'} unit: <span className="text-white/50">{`'tokens'`}</span>, qty: <span className="text-white">1500</span> {'}'},<br />
-                  &nbsp;&nbsp;rate: {'{'} per_unit: <span className="text-white">0.002</span> {'}'},<br />
+                  <span className="text-purple-400">await</span> <span className="text-cyan-400">itpay.cumulative</span>.<span className="text-cyan-400">record</span>({'{'})<br />
+                  &nbsp;&nbsp;usage: {'{'} unit: <span className="text-emerald-400/80">{`'tokens'`}</span>, qty: <span className="text-amber-400">1500</span> {'}'},<br />
+                  &nbsp;&nbsp;rate: {'{'} per_unit: <span className="text-amber-400">0.002</span> {'}'},<br />
                   {'}'})
                 </code>
               </div>

@@ -23,6 +23,19 @@ export function EventRuntimeSection() {
     { code: "subscription.renewed", descKey: "eventRuntime.eventSubscriptionRenewedDesc" },
   ]
 
+  const codeDotColors: Record<string, string> = {
+    "payment.succeeded": "bg-emerald-500",
+    "credits.updated": "bg-amber-400",
+    "tool.unlocked": "bg-purple-400",
+    "subscription.renewed": "bg-cyan-400",
+  }
+  const codeTextColors: Record<string, string> = {
+    "payment.succeeded": "text-emerald-400",
+    "credits.updated": "text-amber-400",
+    "tool.unlocked": "text-purple-400",
+    "subscription.renewed": "text-cyan-400",
+  }
+
   return (
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 bg-gradient-glow opacity-15" />
@@ -47,7 +60,8 @@ export function EventRuntimeSection() {
             <div className="space-y-3">
               {eventItems.map((item) => (
                 <div key={item.code} className="flex items-center gap-2 sm:gap-3 glass rounded-lg px-3 sm:px-4 py-3 overflow-hidden">
-                  <code className="text-xs sm:text-sm font-mono text-white/70 whitespace-nowrap">{item.code}</code>
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${codeDotColors[item.code] || "bg-white/30"}`} />
+                  <code className={`text-xs sm:text-sm font-mono whitespace-nowrap ${codeTextColors[item.code] || "text-white/70"}`}>{item.code}</code>
                   <span className="text-xs text-muted-foreground hidden sm:inline">—</span>
                   <span className="text-xs sm:text-sm text-muted-foreground truncate">{t(item.descKey)}</span>
                 </div>
@@ -65,30 +79,30 @@ export function EventRuntimeSection() {
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-border/50">
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-white/70" />
-                <span className="text-sm font-medium">event-stream</span>
+                <Zap className="w-4 h-4 text-amber-400" />
+                <span className="text-sm font-medium text-amber-300/80">event-stream</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span className="text-[10px] text-white font-semibold">{t("eventRuntime.realtimeLabel")}</span>
+                <span className="text-[10px] text-emerald-400 font-semibold">{t("eventRuntime.realtimeLabel")}</span>
               </div>
             </div>
             <div className="p-3 sm:p-4 space-y-2 font-mono text-[10px] sm:text-xs overflow-x-auto">
               {events.map((evt, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                    evt.status === "success" ? "bg-white" : 
-                    evt.status === "pending" ? "bg-white/40 animate-pulse" : 
-                    "bg-white/60"
+                    evt.status === "success" ? "bg-emerald-500" : 
+                    evt.status === "pending" ? "bg-amber-400/60 animate-pulse" : 
+                    "bg-cyan-400/60"
                   }`} />
                   <span className="text-muted-foreground">{evt.time}</span>
                   <span className={
-                    evt.status === "success" ? "text-white/80" : 
-                    evt.status === "pending" ? "text-white/50" : 
-                    "text-white/60"
+                    evt.status === "success" ? "text-emerald-400" : 
+                    evt.status === "pending" ? "text-amber-400/80" : 
+                    "text-cyan-400/80"
                   }>{evt.event}</span>
                 </div>
               ))}
