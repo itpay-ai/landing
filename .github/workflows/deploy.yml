@@ -39,10 +39,11 @@ jobs:
           if [ -n "$EXISTING" ]; then
             CERT_STATUS=$(aws acm describe-certificate --region us-east-1 --certificate-arn "$EXISTING" --query 'Certificate.Status' --output text)
             echo "cert_arn=$EXISTING" >> "$GITHUB_OUTPUT"
+            echo "status=$([ "$CERT_STATUS" = "ISSUED" ] && echo 'existing' || echo 'pending')" >> "$GITHUB_OUTPUT"
             if [ "$CERT_STATUS" = "ISSUED" ]; then
-              echo "status=existing" >> "$GITHUB_OUTPUT"
+              echo "✅ Certificate already issued for itpay.ai"
             else
-              echo "status=pending" >> "$GITHUB_OUTPUT"
+              echo "⚠️ Certificate exists but status=$CERT_STATUS — needs DNS validation"
             fi
           else
             ARN=$(aws acm request-certificate \
@@ -53,12 +54,20 @@ jobs:
               --query 'CertificateArn' --output text)
             echo "cert_arn=$ARN" >> "$GITHUB_OUTPUT"
             echo "status=requested" >> "$GITHUB_OUTPUT"
-            # Print DNS validation records for user to add in Cloudflare
             echo ""
-            echo "========== ADD THESE DNS RECORDS IN CLOUDFLARE =========="
+            echo "### 🔐 ACM Certificate requested — add these DNS records in Cloudflare"
+            echo ""
             aws acm describe-certificate --region us-east-1 --certificate-arn "$ARN" \
-              --query 'Certificate.DomainValidationOptions[*].ResourceRecord' --output json
-            echo "========================================================="
+              --query 'Certificate.DomainValidationOptions[*].ResourceRecord' \
+              --output json | tee -a "$GITHUB_STEP_SUMMARY"
+            echo ""
+            echo "Or in CNAME format for each domain:"
+            for opt in $(aws acm describe-certificate --region us-east-1 --certificate-arn "$ARN" \
+              --query 'Certificate.DomainValidationOptions[*]' --output json | jq -c '.[]'); do
+              NAME=$(echo "$opt" | jq -r '.ResourceRecord.Name')
+              VALUE=$(echo "$opt" | jq -r '.ResourceRecord.Value')
+              echo "  📍 CNAME  $NAME  →  $VALUE"
+            done
           fi
 
       - name: Configure CloudFront custom domain
