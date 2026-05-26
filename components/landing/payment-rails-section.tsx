@@ -8,9 +8,9 @@ import { useI18n } from "@/lib/i18n"
 const channelKeys = [
   { nameKey: "paymentRails.channelAlipay", countryKey: "paymentRails.channelAlipayCountry", logo: "/images/channels/alipay.png", status: "live", descKey: "paymentRails.channelAlipayDesc" },
   { nameKey: "paymentRails.channelWechat", countryKey: "paymentRails.channelWechatCountry", logo: "/images/channels/wechat-pay.png", status: "live", descKey: "paymentRails.channelWechatDesc" },
-  { nameKey: "paymentRails.channelAlipayHK", countryKey: "paymentRails.channelAlipayHKCountry", logo: "/images/channels/alipay-hk.png", status: "live", descKey: "paymentRails.channelAlipayHKDesc" },
-  { nameKey: "paymentRails.channelPromptPay", countryKey: "paymentRails.channelPromptPayCountry", logo: "/images/channels/promptpay.png", status: "live", descKey: "paymentRails.channelPromptPayDesc" },
-  { nameKey: "paymentRails.channelPayNow", countryKey: "paymentRails.channelPayNowCountry", logo: "/images/channels/paynow.png", status: "live", descKey: "paymentRails.channelPayNowDesc" },
+  { nameKey: "paymentRails.channelAlipayHK", countryKey: "paymentRails.channelAlipayHKCountry", logo: "/images/channels/alipay-hk.png", status: "coming", descKey: "paymentRails.channelAlipayHKDesc" },
+  { nameKey: "paymentRails.channelPromptPay", countryKey: "paymentRails.channelPromptPayCountry", logo: "/images/channels/promptpay.png", status: "coming", descKey: "paymentRails.channelPromptPayDesc" },
+  { nameKey: "paymentRails.channelPayNow", countryKey: "paymentRails.channelPayNowCountry", logo: "/images/channels/paynow.png", status: "coming", descKey: "paymentRails.channelPayNowDesc" },
   { nameKey: "paymentRails.channelDuitNow", countryKey: "paymentRails.channelDuitNowCountry", logo: "/images/channels/duitnow.png", status: "coming", descKey: "paymentRails.channelDuitNowDesc" },
 
   { nameKey: "paymentRails.channelVietQR", countryKey: "paymentRails.channelVietQRCountry", logo: "/images/channels/vietqr.png", status: "coming", descKey: "paymentRails.channelVietQRDesc" },
