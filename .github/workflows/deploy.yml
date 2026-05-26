@@ -31,6 +31,59 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-1
 
+      - name: Request SSL certificate for custom domain
+        id: acm
+        run: |
+          # Check if cert already exists and is issued
+          EXISTING=$(aws acm list-certificates --region us-east-1 --query "CertificateSummaryList[?contains(DomainName, 'itpay.ai')].[CertificateArn]" --output text 2>/dev/null)
+          if [ -n "$EXISTING" ]; then
+            CERT_STATUS=$(aws acm describe-certificate --region us-east-1 --certificate-arn "$EXISTING" --query 'Certificate.Status' --output text)
+            echo "cert_arn=$EXISTING" >> "$GITHUB_OUTPUT"
+            if [ "$CERT_STATUS" = "ISSUED" ]; then
+              echo "status=existing" >> "$GITHUB_OUTPUT"
+            else
+              echo "status=pending" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            ARN=$(aws acm request-certificate \
+              --region us-east-1 \
+              --domain-name itpay.ai \
+              --subject-alternative-names www.itpay.ai \
+              --validation-method DNS \
+              --query 'CertificateArn' --output text)
+            echo "cert_arn=$ARN" >> "$GITHUB_OUTPUT"
+            echo "status=requested" >> "$GITHUB_OUTPUT"
+            # Print DNS validation records for user to add in Cloudflare
+            echo ""
+            echo "========== ADD THESE DNS RECORDS IN CLOUDFLARE =========="
+            aws acm describe-certificate --region us-east-1 --certificate-arn "$ARN" \
+              --query 'Certificate.DomainValidationOptions[*].ResourceRecord' --output json
+            echo "========================================================="
+          fi
+
+      - name: Configure CloudFront custom domain
+        if: steps.acm.outputs.status == 'existing'
+        run: |
+          CERT_ARN="${{ steps.acm.outputs.cert_arn }}"
+          DIST_ID="${{ secrets.AWS_CLOUDFRONT_ID }}"
+          # Get current config
+          aws cloudfront get-distribution-config --id "$DIST_ID" > /tmp/cf-config.json
+          ETAG=$(jq -r '.ETag' /tmp/cf-config.json)
+          # Build updated config
+          jq '
+            .DistributionConfig |
+            .Aliases.Items = (.Aliases.Items // []) + ["itpay.ai", "www.itpay.ai"] |
+            .Aliases.Quantity = (.Aliases.Items | length) |
+            .ViewerCertificate = {
+              "ACMCertificateArn": $arn,
+              "SSLSupportMethod": "sni-only",
+              "MinimumProtocolVersion": "TLSv1.2_2021"
+            } |
+            {DistributionConfig: .}
+          ' --arg arn "$CERT_ARN" /tmp/cf-config.json > /tmp/cf-update.json
+          aws cloudfront update-distribution --id "$DIST_ID" --if-match "$ETAG" --distribution-config file:///tmp/cf-update.json
+        continue-on-error: true
+
       - name: Deploy to S3
         run: aws s3 sync out/ s3://${{ secrets.AWS_S3_BUCKET }} --delete --cache-control "public,max-age=31536000,immutable"
 
