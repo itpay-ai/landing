@@ -28,12 +28,12 @@ export function HeroDashboard() {
         {/* Terminal header */}
         <div className="flex items-center gap-2 pb-4 border-b border-white/10">
           <div className="flex gap-1.5">
-            <div className="h-3 w-3 rounded-full bg-white/30" />
-            <div className="h-3 w-3 rounded-full bg-white/20" />
-            <div className="h-3 w-3 rounded-full bg-white/10" />
+            <div className="h-3 w-3 rounded-full bg-red-500" />
+            <div className="h-3 w-3 rounded-full bg-amber-500" />
+            <div className="h-3 w-3 rounded-full bg-emerald-500" />
           </div>
-          <span className="text-xs text-cyan-400 font-mono ml-2 font-semibold">itpay.ai runtime</span>
-          <div className="ml-auto flex items-center gap-1.5">
+          <span className="text-xs text-cyan-400 font-mono ml-2 font-bold tracking-wider">itpay.ai runtime</span>
+          <div className="ml-auto flex items-center gap-1.5 bg-emerald-500/10 px-2 py-1 rounded-full">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -48,15 +48,15 @@ export function HeroDashboard() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="col-span-2 bg-secondary/50 rounded-xl p-4 border border-white/10"
+            className="col-span-2 bg-gradient-to-br from-blue-950/60 to-indigo-950/30 rounded-xl p-4 border border-blue-500/20"
           >
             <div className="flex items-start gap-3">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-400/40 to-blue-600/20 flex items-center justify-center flex-shrink-0">
-                <MessageSquare className="h-5 w-5 text-blue-300" />
+              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/25">
+                <MessageSquare className="h-5 w-5 text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-blue-300/70 mb-1">{t("dashboard.userRequest")}</p>
-                <p className="text-sm text-blue-200 font-medium">{t("dashboard.userRequestContent")}</p>
+                <p className="text-xs text-blue-300 mb-1 font-semibold">{t("dashboard.userRequest")}</p>
+                <p className="text-sm text-blue-100 font-medium">「{t("dashboard.userRequestContent")}」</p>
               </div>
             </div>
           </motion.div>
@@ -66,23 +66,23 @@ export function HeroDashboard() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5 }}
-            className="bg-secondary/50 rounded-xl p-4 border border-white/10"
+            className="bg-gradient-to-br from-purple-950/50 to-violet-950/30 rounded-xl p-4 border border-purple-500/20"
           >
             <div className="flex items-center gap-2 mb-3">
-              <QrCode className="h-4 w-4 text-purple-400" />
-              <span className="text-xs text-purple-300/80">{t("dashboard.qrLabel")}</span>
+              <QrCode className="h-4 w-4 text-violet-400" />
+              <span className="text-xs text-violet-300 font-semibold">{t("dashboard.qrLabel")}</span>
             </div>
-            <div className="aspect-square bg-white rounded-lg flex items-center justify-center p-3">
+            <div className="aspect-square bg-gradient-to-br from-white to-purple-50 rounded-lg flex items-center justify-center p-3 shadow-inner">
               <div className="grid grid-cols-7 gap-0.5 w-full h-full">
                 {qrPattern.map((filled, i) => (
                   <div
                     key={i}
-                    className={`rounded-sm ${filled ? "bg-[#0a0a0f]" : "bg-transparent"}`}
+                    className={`rounded-sm ${filled ? "bg-[#1a1a2e]" : "bg-transparent"}`}
                   />
                 ))}
               </div>
             </div>
-            <p className="text-xs text-center text-muted-foreground mt-3">{t("dashboard.scanToPay")} <span className="text-amber-400 font-mono font-semibold">¥9.90</span></p>
+            <p className="text-xs text-center text-violet-300/80 mt-3">{t("dashboard.scanToPay")} <span className="text-amber-400 font-mono font-bold">¥9.90</span></p>
           </motion.div>
 
           {/* Payment Status */}
@@ -90,28 +90,29 @@ export function HeroDashboard() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6 }}
-            className="bg-secondary/50 rounded-xl p-4 flex flex-col border border-white/10"
+            className="bg-gradient-to-br from-emerald-950/50 to-green-950/30 rounded-xl p-4 flex flex-col border border-emerald-500/20"
           >
             <div className="flex items-center gap-2 mb-3">
               <CheckCircle className="h-4 w-4 text-emerald-400" />
               <span className="text-xs text-emerald-400 font-semibold">{t("dashboard.paymentSuccess")}</span>
+              <span className="ml-auto text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full">LIVE</span>
             </div>
             <div className="space-y-2.5 flex-1">
               <div className="flex justify-between text-xs">
-                <span className="text-muted-foreground">{t("dashboard.amount")}</span>
-                <span className="text-emerald-400 font-mono font-semibold">¥9.90</span>
+                <span className="text-emerald-300/70">{t("dashboard.amount")}</span>
+                <span className="text-emerald-400 font-mono font-bold">¥9.90</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-muted-foreground">{t("dashboard.method")}</span>
-                <span className="text-emerald-300">{t("hero.wechatPay")}</span>
+                <span className="text-emerald-300/70">{t("dashboard.method")}</span>
+                <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent font-semibold">{t("hero.wechatPay")}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-muted-foreground">{t("dashboard.fee")}</span>
-                <span className="text-amber-400/80 font-mono">¥0.04</span>
+                <span className="text-emerald-300/70">{t("dashboard.fee")}</span>
+                <span className="text-amber-400 font-mono">¥0.04</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-muted-foreground">{t("dashboard.status")}</span>
-                <span className="text-emerald-400">{t("dashboard.confirmed")}</span>
+                <span className="text-emerald-300/70">{t("dashboard.status")}</span>
+                <span className="text-emerald-400 font-semibold">{t("dashboard.confirmed")}</span>
               </div>
             </div>
           </motion.div>
@@ -121,11 +122,11 @@ export function HeroDashboard() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="col-span-2 bg-secondary/50 rounded-xl p-4 border border-white/10"
+            className="col-span-2 bg-gradient-to-br from-amber-950/50 to-orange-950/20 rounded-xl p-4 border border-amber-500/20"
           >
             <div className="flex items-center gap-2 mb-3">
               <Zap className="h-4 w-4 text-amber-400" />
-              <span className="text-xs text-amber-300/80">{t("dashboard.eventStream")}</span>
+              <span className="text-xs text-amber-300 font-semibold">{t("dashboard.eventStream")}</span>
             </div>
             <div className="space-y-2 font-mono text-xs">
               <EventLine event="payment.succeeded" time="0.2s" channel="wechat" />
@@ -139,14 +140,14 @@ export function HeroDashboard() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.8 }}
-            className="bg-secondary/50 rounded-xl p-4 border border-white/10"
+            className="bg-gradient-to-br from-amber-950/50 to-yellow-950/20 rounded-xl p-4 border border-amber-500/20"
           >
             <div className="flex items-center gap-2 mb-2">
               <Wallet className="h-4 w-4 text-amber-400" />
-              <span className="text-xs text-amber-300/80">{t("dashboard.merchantWallet")}</span>
+              <span className="text-xs text-amber-300 font-semibold">{t("dashboard.merchantWallet")}</span>
             </div>
-            <p className="text-xl font-bold text-foreground font-mono">¥12,805</p>
-            <p className="text-xs text-emerald-400 mt-1">+¥9.86 {t("dashboard.feeDeducted")}</p>
+            <p className="text-xl font-bold text-amber-300 font-mono">¥12,805</p>
+            <p className="text-xs text-emerald-400 mt-1 font-medium">+¥9.86 {t("dashboard.feeDeducted")}</p>
           </motion.div>
 
           {/* Credits */}
@@ -154,14 +155,14 @@ export function HeroDashboard() {
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.9 }}
-            className="bg-secondary/50 rounded-xl p-4 border border-white/10"
+            className="bg-gradient-to-br from-purple-950/50 to-fuchsia-950/20 rounded-xl p-4 border border-purple-500/20"
           >
             <div className="flex items-center gap-2 mb-2">
               <CreditCard className="h-4 w-4 text-purple-400" />
-              <span className="text-xs text-purple-300/80">{t("dashboard.userCredits")}</span>
+              <span className="text-xs text-purple-300 font-semibold">{t("dashboard.userCredits")}</span>
             </div>
-            <p className="text-xl font-bold text-foreground font-mono">2,450</p>
-            <p className="text-xs text-amber-400 mt-1">+100 {t("dashboard.creditsUnlocked")}</p>
+            <p className="text-xl font-bold text-purple-300 font-mono">2,450</p>
+            <p className="text-xs text-amber-400 mt-1 font-medium">+100 {t("dashboard.creditsUnlocked")}</p>
           </motion.div>
         </div>
       </div>
@@ -174,11 +175,15 @@ export function HeroDashboard() {
         className="absolute -right-4 -bottom-4 glass rounded-xl p-4 text-xs shadow-lg border border-white/10"
       >
         <div className="space-y-1.5">
-          <div className="text-muted-foreground">{t("dashboard.runtimeLabel")}</div>
-          <div className="text-cyan-400/60">↓</div>
-          <div className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-bold">itpay.ai</div>
-          <div className="text-cyan-400/60">↓</div>
-          <div className="text-white/80">{t("dashboard.protocolLabel")}</div>
+          <div className="text-cyan-300/80 font-semibold">{t("dashboard.runtimeLabel")}</div>
+          <div className="text-cyan-400/60 text-center">↓</div>
+          <div className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-bold text-sm tracking-wide">itpay.ai</div>
+          <div className="text-cyan-400/60 text-center">↓</div>
+          <div className="flex flex-wrap gap-1.5">
+            <span className="bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded text-[10px] font-medium">支付宝</span>
+            <span className="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-[10px] font-medium">PromptPay</span>
+            <span className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded text-[10px] font-medium">USDC</span>
+          </div>
         </div>
       </motion.div>
     </div>
@@ -187,16 +192,21 @@ export function HeroDashboard() {
 
 function EventLine({ event, time, status = "complete", channel }: { event: string; time: string; status?: "complete" | "pending"; channel?: string }) {
   const eventColors: Record<string, string> = {
-    "payment.succeeded": "text-emerald-400",
-    "credits.updated": "text-amber-400",
-    "tool.unlocked": "text-purple-400",
+    "payment.succeeded": "text-emerald-300 font-semibold",
+    "credits.updated": "text-amber-300",
+    "tool.unlocked": "text-violet-300",
+  }
+  const eventDots: Record<string, string> = {
+    "payment.succeeded": "bg-emerald-500",
+    "credits.updated": "bg-amber-500",
+    "tool.unlocked": "bg-violet-500",
   }
   return (
-    <div className="flex items-center gap-2">
-      <span className={`h-1.5 w-1.5 rounded-full ${status === "complete" ? "bg-emerald-500" : "bg-amber-400/60 animate-pulse"}`} />
+    <div className="flex items-center gap-2 py-1 px-2 rounded bg-white/5 hover:bg-white/10 transition-colors">
+      <span className={`h-2 w-2 rounded-full ${status === "complete" ? (eventDots[event] || "bg-emerald-500") + " shadow-sm" : "bg-amber-400/60 animate-pulse"}`} />
       <span className={`${eventColors[event] || "text-white/80"}`}>{event}</span>
-      {channel && <span className="text-emerald-400/60 text-[10px]">[{channel}]</span>}
-      <span className="text-muted-foreground ml-auto">{time}</span>
+      {channel && <span className="bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded text-[10px] font-semibold">[{channel}]</span>}
+      <span className="text-white/40 ml-auto">{time}</span>
     </div>
   )
 }
